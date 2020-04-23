@@ -1,4 +1,0 @@
-#Wed Apr 22 18:05:18 IST 2020
-base.0=C\:\\Users\\Hibnu Hishath\\Desktop\\Hibzz Games\\Games and Apps\\tilted\\Tilted Project\\Test Builds\\launcher\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
