@@ -30,7 +30,7 @@ public class PaddleInput : MonoBehaviour
 		expectedPosition = transform.position;
 
 		// Calculate clamp distance based on screen
-		ClampDistance = Screen.width * Camera.main.orthographicSize / Screen.height; 
+		ClampDistance = Screen.width * Camera.main.orthographicSize / Screen.height;
 	}
 
 	// When the object is enabled
@@ -53,8 +53,22 @@ public class PaddleInput : MonoBehaviour
 		// Get the rotation rate in the y axis of the device
 		rotationRateY = Input.gyro.rotationRate.y;
 
+#if !DEBUG
 		// ignore moving the paddle if the intensity is not high enough
 		if (rotationRateY < PaddleResponsiveness && rotationRateY > -PaddleResponsiveness) { return; }
+#endif
+
+#if DEBUG
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			expectedPosition.x -= PaddleSensitivity * Time.deltaTime;
+		}
+		else if(Input.GetKey(KeyCode.RightArrow))
+		{
+			expectedPosition.x += PaddleSensitivity * Time.deltaTime;
+		}
+
+#endif
 
 		// Apply the rotation rate along with the paddle speed to calculate expected position.
 		// Expected position is clamped based on the screen size.

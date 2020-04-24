@@ -34,7 +34,12 @@ public class SetSpawnLocation : MonoBehaviour
 	[SerializeField]
 	private float preferredZPosition = 1;
 
-    #endregion
+	#endregion
+
+	/// <summary>
+	/// Stores the position to reset to
+	/// </summary>
+	private Vector3 resetPosition;
 
     /// <summary>
     /// Function called at the very first frame of the scene
@@ -78,6 +83,18 @@ public class SetSpawnLocation : MonoBehaviour
 
 		// Set the gameobject's position as the new world position
 		transform.position = worldPosition;
+		
+		// Store a cache of a position to reset later
+		resetPosition = worldPosition;
+	}
+
+	/// <summary>
+	/// Function used to reset an object's position to its spawn position
+	/// </summary>
+	public void ResetPosition()
+	{
+		// set spawn position as the reset position
+		transform.position = resetPosition;
 	}
 
 	#region public screenspace enums
