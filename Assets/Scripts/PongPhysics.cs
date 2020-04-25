@@ -9,6 +9,11 @@ public class PongPhysics : MonoBehaviour
 	[SerializeField]
 	private float Speed = 5;
 
+	[Header("Paddle Properties")]
+	[Tooltip("Amount of angular displacement applied if pong hits on the edge of the paddle")]
+	[SerializeField]
+	private float AdditionalAngularDisplacement = 30.0f;
+
 	private Vector3 expectedRotation;
 
 	private void FixedUpdate()
@@ -38,10 +43,11 @@ public class PongPhysics : MonoBehaviour
 			expectedRotation.z = Mathf.Rad2Deg * angle;
         }
 
-        // if the object is tagged paddle, perform additional calculation
-        if(other.CompareTag("Paddle"))
+		// if the object is tagged paddle, perform additional calculation
+		if (other.CompareTag("Paddle"))
 		{
-
+			float displacement = transform.position.x - other.transform.position.x;
+			expectedRotation.z -= displacement * AdditionalAngularDisplacement * 2.0f / other.transform.localScale.y;
 		}
 
 		transform.rotation = Quaternion.Euler(expectedRotation);
