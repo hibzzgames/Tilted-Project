@@ -7,9 +7,11 @@ public class PaddleInput : MonoBehaviour
 	[SerializeField]
 	private float PaddleSensitivity = 5.0f;
 
+#if !DEBUG
 	[Tooltip("The amount of motion ignored by the paddle")]
 	[SerializeField]
 	private float PaddleResponsiveness = 0.1f;
+#endif
 
 	/// <summary>
 	/// Rotation rate on the y axis of the device
