@@ -23,6 +23,18 @@ public class OrbManager : MonoBehaviour
 	/// </summary>
 	private int minActiveOrbs = 1;
 
+	private void OnEnable()
+	{
+		OrbCollision.OnOrbCollisionDestroy += RequestDestroyOrb;
+		OrbCollision.OnOrbCollision += RequestRepurposeOrb;
+	}
+
+	private void OnDisable()
+	{
+		OrbCollision.OnOrbCollisionDestroy -= RequestDestroyOrb;
+		OrbCollision.OnOrbCollision -= RequestRepurposeOrb;
+	}
+
 	// Called at start
 	private void Start()
 	{
