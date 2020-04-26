@@ -7,7 +7,7 @@ public class PongCollision : MonoBehaviour
 	[Header("Paddle Properties")]
 	[Tooltip("Amount of angular displacement applied if pong hits on the edge of the paddle")]
 	[SerializeField]
-	private float AdditionalAngularDisplacement = 15.0f;
+	private float AngularDisplacement = 45.0f;
 
 	// cache of expected rotation of the pong
 	private Vector3 expectedRotation;
@@ -28,8 +28,8 @@ public class PongCollision : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		// Check if the collider is tagged as an object that reflects the pong
-		if (other.CompareTag("Wall") || other.CompareTag("Paddle"))
+		// Check if the collider is tagged as a wall that reflects the pong
+		if (other.CompareTag("Wall"))
 		{
 			// Get a reflected vector with other's right as the normal of reflection
 			Vector3 reflectedVector = Vector3.Reflect(transform.right, other.transform.right);
@@ -42,11 +42,12 @@ public class PongCollision : MonoBehaviour
 			expectedRotation.z = Mathf.Rad2Deg * angle;
 		}
 
-		// if the object is tagged paddle, perform additional calculation
+		// if the object is tagged paddle, perform calculation based on where the pong hit the paddle
 		if (other.CompareTag("Paddle"))
 		{
-			float displacement = transform.position.x - other.transform.position.x;
-			expectedRotation.z -= displacement * AdditionalAngularDisplacement * 2.0f / other.transform.localScale.y;
+			// displacement is calculated to be between -1 and 1
+			float displacement = 2 * (transform.position.x - other.transform.position.x) / other.transform.localScale.y;
+			expectedRotation.z = 90 - displacement * (90 - AngularDisplacement);
 		}
 
 		transform.rotation = Quaternion.Euler(expectedRotation);

@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfd6514557b71542a0a7e0b9f11bc3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AdditionalAngularDisplacement: 15
+  AngularDisplacement: 45
 --- !u!114 &1595212496
 MonoBehaviour:
   m_ObjectHideFlags: 0
