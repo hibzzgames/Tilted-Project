@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 4289722513
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a423963383205f06618fd5e596e86753
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 126876f166a721f71efe197e8580157b
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/BundledAssets/lighttheme/PaddleAsset.prefab
+- Assets/BundledAssets/lighttheme/PongAsset.prefab
+- Assets/BundledAssets/lighttheme/BackgroundAsset.prefab
+Dependencies: []

@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 2122856553
+CRC: 2032071268
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: prototypetheme
+      Dependencies: {}
+    Info_1:
+      Name: lighttheme
       Dependencies: {}

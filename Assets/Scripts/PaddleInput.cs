@@ -61,6 +61,8 @@ public class PaddleInput : MonoBehaviour
 #endif
 
 #if DEBUG
+		PaddleResponsiveness += 0;
+
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			expectedPosition.x -= PaddleSensitivity * Time.deltaTime;

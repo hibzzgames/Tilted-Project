@@ -22,6 +22,11 @@ public class BundledThemeLoader : MonoBehaviour
 
 	private IEnumerator Start()
 	{
+		bundleName = StaticInformation.ThemeName;
+
+		// If the theme name is empty, set theme default to light theme
+		if(bundleName.Equals("")) { bundleName = "lighttheme"; }
+
 		AssetBundleCreateRequest asyncBundleRequest = AssetBundle.LoadFromFileAsync(
 			Path.Combine(Application.streamingAssetsPath, bundleName));
 
