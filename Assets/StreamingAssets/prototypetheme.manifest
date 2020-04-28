@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 899967652
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a978c5522c0a9d3abff719e964b9ad7f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 126876f166a721f71efe197e8580157b
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/BundledAssets/prototypetheme/BackgroundAsset.prefab
+- Assets/BundledAssets/prototypetheme/PongAsset.prefab
+- Assets/BundledAssets/prototypetheme/PaddleAsset.prefab
+Dependencies: []
