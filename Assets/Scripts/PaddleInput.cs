@@ -31,8 +31,8 @@ public class PaddleInput : MonoBehaviour
 		// Set expected position to be the transform's initial position
 		expectedPosition = transform.position;
 
-		// Calculate clamp distance based on screen
-		ClampDistance = Screen.width * Camera.main.orthographicSize / Screen.height;
+		// Calculate clamp distance
+		CalculateClampDistance();
 	}
 
 	// When the object is enabled
@@ -40,6 +40,9 @@ public class PaddleInput : MonoBehaviour
 	{
 		// Enable the attitude sensor
 		Input.gyro.enabled = true;
+
+		// On screen rescale the clamp distance needs to be retargeted
+		EnforceAspectRatio.OnScreenRescale += CalculateClampDistance;
 	}
 
 	// When the object is disabled
@@ -47,6 +50,9 @@ public class PaddleInput : MonoBehaviour
 	{
 		// Disable the attitude sensor
 		Input.gyro.enabled = false;
+
+		// disable rescale screen event handler
+		EnforceAspectRatio.OnScreenRescale -= CalculateClampDistance;
 	}
 
 	// Called once every frame
@@ -81,5 +87,14 @@ public class PaddleInput : MonoBehaviour
 
 		// Set the object's position to the expected position
 		transform.position = expectedPosition;
+	}
+
+	/// <summary>
+	/// Calculates the clamp distance
+	/// </summary>
+	void CalculateClampDistance()
+	{
+		// Calculate clamp distance based on screen
+		ClampDistance = StaticInformation.ScreenWidth * Camera.main.orthographicSize / StaticInformation.ScreenHeight;
 	}
 }

@@ -41,10 +41,25 @@ public class SetSpawnLocation : MonoBehaviour
 	/// </summary>
 	private Vector3 resetPosition;
 
-    /// <summary>
-    /// Function called at the very first frame of the scene
-    /// </summary>
-    private void Awake()
+	private void OnEnable()
+	{
+		EnforceAspectRatio.OnScreenRescale += CalculateSpawnLocation;
+	}
+
+	private void OnDisable()
+	{
+		EnforceAspectRatio.OnScreenRescale -= CalculateSpawnLocation;
+	}
+
+	private void Start()
+	{
+		//CalculateSpawnLocation();
+	}
+
+	/// <summary>
+	/// Calculates and sets the spawn location of the object 
+	/// </summary>
+	private void CalculateSpawnLocation()
 	{
 		float horizontalPosition = 0;
 		float verticalPosition = 0;
@@ -53,28 +68,32 @@ public class SetSpawnLocation : MonoBehaviour
 		// Calculating the screen's horizontal position based on given anchor
 		if (HorizontalAnchor == HorizontalLocation.Center)
 		{
-			horizontalPosition = Screen.width / 2;
+			horizontalPosition = StaticInformation.ScreenWidth / 2;
 		}
-		else if(HorizontalAnchor == HorizontalLocation.Right)
+		else if (HorizontalAnchor == HorizontalLocation.Right)
 		{
-			horizontalPosition = Screen.width;
+			horizontalPosition = StaticInformation.ScreenWidth;
 		}
 
 		// Calculating the screen's vertical position based on given anchor
-		if(VerticalAnchor == VerticalLocation.Center)
+		if (VerticalAnchor == VerticalLocation.Center)
 		{
-			verticalPosition = Screen.height / 2;
+			verticalPosition = StaticInformation.ScreenHeight / 2;
 		}
-		else if(VerticalAnchor == VerticalLocation.Top)
+		else if (VerticalAnchor == VerticalLocation.Top)
 		{
-			verticalPosition = Screen.height;
+			verticalPosition = StaticInformation.ScreenHeight;
 		}
+
+		// retarget calculated position to the screen coordinates
+		horizontalPosition += (Screen.width - StaticInformation.ScreenWidth) / 2;
+		verticalPosition += (Screen.height - StaticInformation.ScreenHeight) / 2;
 
 		// create a screen position vector
 		Vector3 screenPosition = new Vector3(horizontalPosition, verticalPosition, 0);
 
 		// convert items to world space and apply to gameobject's position
-		Vector3 worldPosition  = Camera.main.ScreenToWorldPoint(screenPosition);
+		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
 		// Apply offsets and set object to clipping plane 1
 		worldPosition.x += HorizontalOffset;
@@ -83,7 +102,7 @@ public class SetSpawnLocation : MonoBehaviour
 
 		// Set the gameobject's position as the new world position
 		transform.position = worldPosition;
-		
+
 		// Store a cache of a position to reset later
 		resetPosition = worldPosition;
 	}
