@@ -25,14 +25,14 @@ public class OrbManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		OrbCollision.OnOrbCollisionDestroy += RequestDestroyOrb;
-		OrbCollision.OnOrbCollision += RequestRepurposeOrb;
+		OrbCollision.OnOrbCollectedGameObjectReference += RequestDestroyOrb;
+		OrbCollision.OnOrbCollected += RequestRepurposeOrb;
 	}
 
 	private void OnDisable()
 	{
-		OrbCollision.OnOrbCollisionDestroy -= RequestDestroyOrb;
-		OrbCollision.OnOrbCollision -= RequestRepurposeOrb;
+		OrbCollision.OnOrbCollectedGameObjectReference -= RequestDestroyOrb;
+		OrbCollision.OnOrbCollected -= RequestRepurposeOrb;
 	}
 
 	// Called at start
@@ -56,6 +56,11 @@ public class OrbManager : MonoBehaviour
 				// enable the orb and increase active orb count
 				orb.SetActive(true);
 				activeOrbs++;
+
+				// Resets the health of the repurposed orb
+				orb.GetComponent<OrbHealth>().ResetHealth();
+
+				// Returns true indicating that the orb has been repurposed
 				return true;
 			}
 		}

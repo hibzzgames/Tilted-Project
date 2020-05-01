@@ -15,9 +15,13 @@ public class EnforceAspectRatio : MonoBehaviour
 
 	private void Start()
 	{
+		// Rescales the camera on start
 		RescaleCamera();
 	}
 
+	/// <summary>
+	/// Rescales the camera to the set camera given camera target ratio
+	/// </summary>
 	void RescaleCamera()
 	{
 		// Get the aspect as float for the target and screen
@@ -55,4 +59,6 @@ public class EnforceAspectRatio : MonoBehaviour
 
 		OnScreenRescale?.Invoke();
 	}
+
+	// TOOD: Add <c> public void RescaleCamera (Vector2 AspectRation) </c> overloaded function
 }

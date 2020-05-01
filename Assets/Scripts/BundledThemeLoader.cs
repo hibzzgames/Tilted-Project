@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+// TODO: Comment this file
+
 public class BundledThemeLoader : MonoBehaviour
 {
 	[Header("Theme Properties")]
