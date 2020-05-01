@@ -57,8 +57,8 @@ public class OrbManager : MonoBehaviour
 				orb.SetActive(true);
 				activeOrbs++;
 
-				// Resets the health of the repurposed orb
-				orb.GetComponent<OrbHealth>().ResetHealth();
+				// Drain the health of repurposed orb to 0
+				orb.GetComponent<OrbHealth>().DrainHealth();
 
 				// Returns true indicating that the orb has been repurposed
 				return true;

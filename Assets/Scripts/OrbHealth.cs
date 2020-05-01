@@ -13,6 +13,13 @@ public class OrbHealth : MonoBehaviour
 	/// </summary>
 	private int CurrentHealth = 0;
 
+	#region Event Declarations
+
+	public delegate void OrbZeroHealthAction();
+	public static event OrbZeroHealthAction OnOrbZeroHealth;
+
+	#endregion
+
 	#region Unity Functions
 
 	private void Start()
@@ -50,7 +57,7 @@ public class OrbHealth : MonoBehaviour
 	/// </summary>
 	public void ReduceHealth()
 	{
-		CurrentHealth--;
+		ReduceHealth(1);
 	}
 
 	/// <summary>
@@ -59,7 +66,22 @@ public class OrbHealth : MonoBehaviour
 	/// <param name="damage"> The damage value to apply </param>
 	public void ReduceHealth(int damage)
 	{
-		CurrentHealth -= 1;
+		CurrentHealth -= damage;
+
+		// if current health is less than or equal to zero, trigger an orb-health-zero event
+		if(CurrentHealth <= 0)
+		{
+			OnOrbZeroHealth?.Invoke();
+		}
+	}
+
+	/// <summary>
+	/// Drains all the health of an orb immediately
+	/// </summary>
+	public void DrainHealth()
+	{
+		CurrentHealth = 0;
+		OnOrbZeroHealth?.Invoke();
 	}
 
 	/// <summary>
