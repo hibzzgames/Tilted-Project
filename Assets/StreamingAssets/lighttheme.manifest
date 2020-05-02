@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4289722513
+CRC: 143624529
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a423963383205f06618fd5e596e86753
+    Hash: acfb2e9bf6c9ce5254a7a9ce72d744d7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 126876f166a721f71efe197e8580157b
+    Hash: ebc9f7f9db36bcc1f8582fcedf4e606c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -19,12 +19,18 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: dbd19167472bf5a45a90d2393817ccce, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
 - Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 Assets:
 - Assets/BundledAssets/lighttheme/PaddleAsset.prefab
+- Assets/BundledAssets/lighttheme/OrbAsset.prefab
 - Assets/BundledAssets/lighttheme/PongAsset.prefab
+- Assets/BundledAssets/lighttheme/ThemeDependeciesManager.prefab
 - Assets/BundledAssets/lighttheme/BackgroundAsset.prefab
 Dependencies: []

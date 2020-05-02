@@ -23,6 +23,11 @@ public class OrbManager : MonoBehaviour
 	/// </summary>
 	private int minActiveOrbs = 1;
 
+	/// <summary>
+	/// A reference to the current theme's orb asset
+	/// </summary>
+	private GameObject OrbAsset = null;
+
 	private void OnEnable()
 	{
 		OrbCollision.OnOrbCollectedGameObjectReference += RequestDestroyOrb;
@@ -33,12 +38,6 @@ public class OrbManager : MonoBehaviour
 	{
 		OrbCollision.OnOrbCollectedGameObjectReference -= RequestDestroyOrb;
 		OrbCollision.OnOrbCollected -= RequestRepurposeOrb;
-	}
-
-	// Called at start
-	private void Start()
-	{
-		RequestNewOrb();
 	}
 
 	/// <summary>
@@ -86,7 +85,7 @@ public class OrbManager : MonoBehaviour
 	/// <summary>
 	/// Request a new orb on screen
 	/// </summary>
-	private void RequestNewOrb()
+	public void RequestNewOrb()
 	{
 		// check if the orb can be repurposed first
 		bool repurposeRequestStatus = RequestRepurposeOrb();
@@ -95,7 +94,8 @@ public class OrbManager : MonoBehaviour
 		if(!repurposeRequestStatus)
 		{
 			// Create a new orb and add it to the list
-			GameObject newOrb = GameObject.Instantiate(OrbPrefab);
+			GameObject newOrb = Instantiate(OrbPrefab);
+			Instantiate(OrbAsset, newOrb.transform);
 			instancedOrbs.Add(newOrb);
 
 			// increment active orb count
@@ -134,5 +134,16 @@ public class OrbManager : MonoBehaviour
 
 		// Requested orb was not found and cannot be destroyed
 		return false;
+	}
+
+	/// <summary>
+	/// Adds a child to the orb asset
+	/// </summary>
+	/// <param name="childAsset"> The asset added as child to the orb </param>
+	public void AddOrbAsset(GameObject childAsset)
+	{
+		// Sets the given child asset as the orb asset, so it can be 
+		// instantiated as child when the prefab gets instantiated
+		OrbAsset = childAsset;
 	}
 }

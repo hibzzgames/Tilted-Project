@@ -1245,12 +1245,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bundleName: prototypetheme
+  DependencyManagerName: ThemeDependeciesManager
   PongAssetName: PongAsset
   PaddleAssetName: PaddleAsset
   BackgroundAssetName: BackgroundAsset
+  OrbAssetName: OrbAsset
   Pong: {fileID: 1595212489}
   Paddle: {fileID: 1638156999}
   Background: {fileID: 620443489}
+  orbManager: {fileID: 1036558213}
 --- !u!4 &1891931103
 Transform:
   m_ObjectHideFlags: 0
