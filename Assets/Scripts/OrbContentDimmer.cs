@@ -12,19 +12,14 @@ public class OrbContentDimmer : MonoBehaviour
 	/// <summary>
 	/// List of materials cache'd for easier access
 	/// </summary>
-	private List<Material> materials = new List<Material>();
+	//private List<Material> materials = new List<Material>();
+
+	private Material material;
 
 	private void Start()
 	{
-		// Loops through the object to get a list of child materials tagged "Orb Asset"
-		foreach(Transform child in transform)
-		{
-			if(child.tag == "OrbAsset")
-			{
-				// adds it to the material list
-				materials.Add(child.GetComponent<Renderer>().material);
-			}
-		}
+		// Gets the objects material
+		material = GetComponent<Renderer>().material;
 	}
 
 	private void OnEnable()
@@ -51,10 +46,7 @@ public class OrbContentDimmer : MonoBehaviour
 		dimValue = Mathf.Clamp(dimValue, 0, 1);
 
 		// sets the alpha of each material to the given dimValue
-		foreach(Material material in materials)
-		{
-			material.SetFloat("_alpha", dimValue);
-		}
+		material.SetFloat("_alpha", dimValue);
 	}
 
 	/// <summary>
@@ -63,10 +55,7 @@ public class OrbContentDimmer : MonoBehaviour
 	public void OrbReset()
 	{
 		// Sets each materials alpha to 1.0f
-		foreach(Material material in materials)
-		{
-			material.SetFloat("_alpha", 1.0f);
-		}
+		material.SetFloat("_alpha", 1.0f);
 	}
 
 	/// <summary>

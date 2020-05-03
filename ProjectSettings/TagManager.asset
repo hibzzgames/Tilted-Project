@@ -7,7 +7,6 @@ TagManager:
   - Paddle
   - Pong
   - Wall
-  - OrbAsset
   layers:
   - Default
   - TransparentFX

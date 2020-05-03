@@ -32,9 +32,12 @@ public class BundledThemeLoader : MonoBehaviour
 		// The name of the bundle is loaded from the static information file
 		bundleName = StaticInformation.ThemeName;
 
+#if DEBUG
 		// If the theme name is empty, set theme default to light theme
 		if(bundleName.Equals("")) { bundleName = "lighttheme"; }
-
+#else
+		if(bundleName.Equals("")) { bundleName = "lighttheme"; }
+#endif
 
 		// A requse to load the asset bundle is made
 		AssetBundleCreateRequest asyncBundleRequest = AssetBundle.LoadFromFileAsync(
@@ -99,7 +102,7 @@ public class BundledThemeLoader : MonoBehaviour
 		// Unload asset bundle (keeping the loaded assets)
 		localAssetBundle.Unload(false);
 
-		// Todo: replace it with theme has loaded event
+		// Todo: replace these with theme has loaded event
 		orbManager.RequestNewOrb();
 	}
 

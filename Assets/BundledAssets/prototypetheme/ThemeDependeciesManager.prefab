@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shaderDependeciesList:
   - tag: 3
-    ShaderReference: Shader Graph/Orb 2D Shader
+    ShaderReference: Shader Graphs/Orb 2D Shader
