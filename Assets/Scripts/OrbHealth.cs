@@ -8,6 +8,9 @@ public class OrbHealth : MonoBehaviour
 	[SerializeField]
 	private int MaxHealth = 3;
 
+	[Tooltip("The charge objects")]
+	public List<Renderer> ChargeObjects;
+
 	/// <summary>
 	/// The current health status of an orb
 	/// </summary>
@@ -50,6 +53,10 @@ public class OrbHealth : MonoBehaviour
 	public void ResetHealth()
 	{
 		CurrentHealth = MaxHealth;
+		foreach(Renderer chargeRenderer in ChargeObjects)
+		{
+			chargeRenderer.material.SetFloat("_alpha", 1.0f);
+		}
 	}
 
 	/// <summary>
@@ -69,9 +76,14 @@ public class OrbHealth : MonoBehaviour
 		CurrentHealth -= damage;
 
 		// if current health is less than or equal to zero, trigger an orb-health-zero event
-		if(CurrentHealth <= 0)
+		if (CurrentHealth <= 0)
 		{
 			OnOrbZeroHealth?.Invoke();
+		}
+
+		if (CurrentHealth >= 0 && CurrentHealth < MaxHealth)
+		{
+			ChargeObjects[CurrentHealth].material.SetFloat("_alpha", 0.25f);
 		}
 	}
 
@@ -82,6 +94,12 @@ public class OrbHealth : MonoBehaviour
 	{
 		CurrentHealth = 0;
 		OnOrbZeroHealth?.Invoke();
+
+		foreach(Renderer chargeRenderer in ChargeObjects)
+		{
+			chargeRenderer.material.SetFloat("_alpha", 0.25f);
+
+		}
 	}
 
 	/// <summary>
