@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Charge Shader 2D Material
+  m_Name: Charge Material Basic
   m_Shader: {fileID: -6465566751694194690, guid: c5196fcd595276c4b82512c7092e1132,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -32,4 +32,4 @@ Material:
     - _alpha: 1
     - _speed: 0.1
     m_Colors:
-    - Color_E8E4C020: {r: 0, g: 1.2119043, b: 1.3350785, a: 1}
+    - Color_E8E4C020: {r: 1.3032943, g: 0.4241854, b: 0.7624246, a: 1}

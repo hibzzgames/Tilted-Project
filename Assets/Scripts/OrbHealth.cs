@@ -8,8 +8,17 @@ public class OrbHealth : MonoBehaviour
 	[SerializeField]
 	private int MaxHealth = 3;
 
+	[Header("Charge Properties")]
 	[Tooltip("The charge objects")]
 	public List<Renderer> ChargeObjects;
+
+	[Tooltip("The Alpha to set when the charge is dimmed")]
+	[SerializeField]
+	private float DimAlpha = 0.25f;
+
+	[Tooltip("The alpha to set when the charge is bright and active")]
+	[SerializeField]
+	private float BrightAlpha = 1.0f;
 
 	/// <summary>
 	/// The current health status of an orb
@@ -55,7 +64,7 @@ public class OrbHealth : MonoBehaviour
 		CurrentHealth = MaxHealth;
 		foreach(Renderer chargeRenderer in ChargeObjects)
 		{
-			chargeRenderer.material.SetFloat("_alpha", 1.0f);
+			chargeRenderer.material.SetFloat("_alpha", BrightAlpha);
 		}
 	}
 
@@ -83,7 +92,7 @@ public class OrbHealth : MonoBehaviour
 
 		if (CurrentHealth >= 0 && CurrentHealth < MaxHealth)
 		{
-			ChargeObjects[CurrentHealth].material.SetFloat("_alpha", 0.25f);
+			ChargeObjects[CurrentHealth].material.SetFloat("_alpha", DimAlpha);
 		}
 	}
 
@@ -97,7 +106,7 @@ public class OrbHealth : MonoBehaviour
 
 		foreach(Renderer chargeRenderer in ChargeObjects)
 		{
-			chargeRenderer.material.SetFloat("_alpha", 0.25f);
+			chargeRenderer.material.SetFloat("_alpha", DimAlpha);
 
 		}
 	}

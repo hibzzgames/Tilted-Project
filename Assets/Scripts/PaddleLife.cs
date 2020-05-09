@@ -6,8 +6,6 @@ using UnityEngine.PlayerLoop;
 
 public class PaddleLife : MonoBehaviour
 {
-	public TMP_Text livesUI; // TODO: Replace with bar
-
 	[Tooltip("The max number of lives the paddle has")]
 	[SerializeField]
 	private int MaxHealth = 5;
@@ -21,6 +19,10 @@ public class PaddleLife : MonoBehaviour
 	/// bool representing is pong collected to reduce lives and such
 	/// </summary>
 	private bool IsOrbCollected = true;
+
+	// Events
+	public delegate void PaddleHealthUpdatedAction();
+	public static event PaddleHealthUpdatedAction OnPaddleHealthUpdated;
 
 	private void Start()
 	{
@@ -71,7 +73,7 @@ public class PaddleLife : MonoBehaviour
 	public void RefillHealth()
 	{
 		CurrentHealth = MaxHealth;
-		UpdateUI();
+		OnPaddleHealthUpdated?.Invoke();
 	}
 
 	/// <summary>
@@ -80,7 +82,7 @@ public class PaddleLife : MonoBehaviour
 	public void DrainHealth()
 	{
 		CurrentHealth = 0;
-		UpdateUI();
+		OnPaddleHealthUpdated?.Invoke();
 	}
 
 	/// <summary>
@@ -95,7 +97,7 @@ public class PaddleLife : MonoBehaviour
 		// Ensures that the value is between 0 and max health
 		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
 
-		UpdateUI();
+		OnPaddleHealthUpdated?.Invoke();
 	}
 
 	/// <summary>
@@ -126,10 +128,5 @@ public class PaddleLife : MonoBehaviour
 	{
 		IsOrbCollected = true;
 		return true; // Redundant (Todo: See if this can be changed by rearranging the way events are handled)
-	}
-
-	private void UpdateUI()
-	{
-		livesUI.text = "Current Health: " + CurrentHealth;
 	}
 }
