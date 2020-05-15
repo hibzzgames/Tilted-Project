@@ -24,6 +24,9 @@ public class PaddleLife : MonoBehaviour
 	public delegate void PaddleHealthUpdatedAction();
 	public static event PaddleHealthUpdatedAction OnPaddleHealthUpdated;
 
+	public delegate void PaddleHealthZeroAction();
+	public static event PaddleHealthZeroAction OnPaddleHealthZero;
+
 	private void Start()
 	{
 		// Initialize pong stats at the start
@@ -83,6 +86,7 @@ public class PaddleLife : MonoBehaviour
 	{
 		CurrentHealth = 0;
 		OnPaddleHealthUpdated?.Invoke();
+		OnPaddleHealthZero?.Invoke();
 	}
 
 	/// <summary>
@@ -98,6 +102,11 @@ public class PaddleLife : MonoBehaviour
 		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
 
 		OnPaddleHealthUpdated?.Invoke();
+
+		if(CurrentHealth <= 0)
+		{
+			OnPaddleHealthZero?.Invoke();
+		}
 	}
 
 	/// <summary>
